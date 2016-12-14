@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>React - Template</title>
+    <script src="../../js/react.min.js"></script>
+    <script src="../../js/react-dom.min.js"></script>
+    <script src="../../js/browser.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div id="container"></div>
+    <div id="simpleComponent"></div>
+    <div id="props"></div>
+
+    <script type="text/babel">
+        //write straight in to page
+        ReactDOM.render(
+            <h1>Welcome to React!</h1>,
+            document.getElementById('container')
+        );
+
+
+        //defining a component. must be uppercase for some reason.
+        //can only return one parent element. nesting is allowed
+        var SimpleComponent = React.createClass({
+            render: function(){
+                 return (
+                     <div>
+                        <h3>This is a simple component</h3>
+                        <h4>This is another part of the same component </h4>
+                    </div>
+                 );
+            }
+        });
+
+        //inject to page. can only return one parent as well. repeat by wrapping in div.
+        ReactDOM.render(<div>
+                            <SimpleComponent />
+                            <SimpleComponent />
+                        </div>,
+                        document.getElementById('simpleComponent'));
+
+
+    //===================//
+    //      Props        //
+    //===================//
+
+    var Movie = React.createClass({
+        render: function(){
+            //Properties get bound here.
+             return (
+                 <div>
+                    <h1> {this.props.title} </h1>
+                    <h2> {this.props.genre}</h2>
+                </div>
+             );
+        }
+    })
+
+    //properties get defined here.
+    ReactDOM.render(
+        <div>
+            <Movie title="Batman Begins" genre="Batman"/>
+            <Movie title="The Dark Knight" genre="Batman"/>
+            <Movie title="The Dark Knight Rises" genre="Batman"/>
+        </div>,
+     document.getElementById('props'));
+
+
+     //===================//
+     //      Events       //
+     //===================//
+
+    </script>
+
+</body>
+</html>
